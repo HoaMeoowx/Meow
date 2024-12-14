@@ -1,0 +1,114 @@
+-- Tạo GUI
+local ScreenGui = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local TabFrame = Instance.new("Frame")
+local AutoFarmTab = Instance.new("TextButton")
+local AutoBoneTab = Instance.new("TextButton")
+local ContentFrame = Instance.new("Frame")
+
+-- Thuộc tính của ScreenGui
+ScreenGui.Name = "CustomGui"
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+-- Thuộc tính của MainFrame (khung chính)
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+MainFrame.Size = UDim2.new(0, 400, 0, 300)
+MainFrame.Position = UDim2.new(0.5, -200, 0.5, -150)
+MainFrame.ClipsDescendants = true
+
+-- Thuộc tính của TabFrame (khung chứa tab)
+TabFrame.Name = "TabFrame"
+TabFrame.Parent = MainFrame
+TabFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+TabFrame.Size = UDim2.new(1, 0, 0, 50)
+
+-- Thuộc tính của AutoFarmTab
+AutoFarmTab.Name = "AutoFarmTab"
+AutoFarmTab.Parent = TabFrame
+AutoFarmTab.Text = "Auto Farm"
+AutoFarmTab.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoFarmTab.TextSize = 18
+AutoFarmTab.Size = UDim2.new(0.48, -5, 1, 0) -- To và sát nhau hơn
+AutoFarmTab.Position = UDim2.new(0, 5, 0, 0)
+AutoFarmTab.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+
+-- Thuộc tính của AutoBoneTab
+AutoBoneTab.Name = "AutoBoneTab"
+AutoBoneTab.Parent = TabFrame
+AutoBoneTab.Text = "Auto Bone"
+AutoBoneTab.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoBoneTab.TextSize = 18
+AutoBoneTab.Size = UDim2.new(0.48, -5, 1, 0)
+AutoBoneTab.Position = UDim2.new(0.52, 0, 0, 0)
+AutoBoneTab.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+
+-- Thuộc tính của ContentFrame (khung chứa nội dung)
+ContentFrame.Name = "ContentFrame"
+ContentFrame.Parent = MainFrame
+ContentFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+ContentFrame.Size = UDim2.new(1, 0, 1, -50)
+ContentFrame.Position = UDim2.new(0, 0, 0, 50)
+
+-- Tạo nội dung cho AutoFarm
+local AutoFarmContent = Instance.new("Frame")
+AutoFarmContent.Parent = ContentFrame
+AutoFarmContent.BackgroundTransparency = 1
+AutoFarmContent.Size = UDim2.new(1, 0, 1, 0)
+
+local AutoLevelButton = Instance.new("TextButton")
+local AutoLevelStatus = false  -- Trạng thái Auto Level
+
+AutoLevelButton.Name = "AutoLevelButton"
+AutoLevelButton.Parent = AutoFarmContent
+AutoLevelButton.Text = "Auto Level: Tắt"
+AutoLevelButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoLevelButton.TextSize = 20 -- Chữ to hơn
+AutoLevelButton.Size = UDim2.new(0.6, 0, 0.1, 0)
+AutoLevelButton.Position = UDim2.new(0.2, 0, 0.1, 0)
+AutoLevelButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+
+-- Logic bật/tắt Auto Level
+AutoLevelButton.MouseButton1Click:Connect(function()
+    AutoLevelStatus = not AutoLevelStatus
+    if AutoLevelStatus then
+        AutoLevelButton.Text = "Auto Level: Bật"
+        AutoLevelButton.BackgroundColor3 = Color3.fromRGB(0, 150, 0) -- Màu xanh khi bật
+        print("Auto Level ON")
+        -- Thêm code chạy Auto Level ở đây
+    else
+        AutoLevelButton.Text = "Auto Level: Tắt"
+        AutoLevelButton.BackgroundColor3 = Color3.fromRGB(150, 0, 0) -- Màu đỏ khi tắt
+        print("Auto Level OFF")
+        -- Thêm code tắt Auto Level ở đây
+    end
+end)
+
+-- Tạo nội dung cho AutoBone
+local AutoBoneContent = Instance.new("Frame")
+AutoBoneContent.Parent = ContentFrame
+AutoBoneContent.BackgroundTransparency = 1
+AutoBoneContent.Size = UDim2.new(1, 0, 1, 0)
+AutoBoneContent.Visible = false
+
+local AutoBoneLabel = Instance.new("TextLabel")
+AutoBoneLabel.Parent = AutoBoneContent
+AutoBoneLabel.Text = "Tính năng Auto Bone"
+AutoBoneLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoBoneLabel.TextSize = 20 -- Chữ to hơn
+AutoBoneLabel.Size = UDim2.new(0.8, 0, 0.1, 0)
+AutoBoneLabel.Position = UDim2.new(0.1, 0, 0.1, 0)
+AutoBoneLabel.BackgroundTransparency = 1
+
+-- Xử lý sự kiện chuyển tab
+AutoFarmTab.MouseButton1Click:Connect(function()
+    AutoFarmContent.Visible = true
+    AutoBoneContent.Visible = false
+end)
+
+AutoBoneTab.MouseButton1Click:Connect(function()
+    AutoFarmContent.Visible = false
+    AutoBoneContent.Visible = true
+end)
