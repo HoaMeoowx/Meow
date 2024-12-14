@@ -1,0 +1,73 @@
+-- Tạo GUI
+local ScreenGui = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local TabFrame = Instance.new("Frame")
+local AutoFarmTab = Instance.new("TextButton")
+local AutoBoneTab = Instance.new("TextButton")
+local AutoLevelButton = Instance.new("TextButton")
+
+-- Thuộc tính của ScreenGui
+ScreenGui.Name = "CustomGui"
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+-- Thuộc tính của MainFrame (khung chính)
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+MainFrame.Size = UDim2.new(0, 400, 0, 300)
+MainFrame.Position = UDim2.new(0.5, -200, 0.5, -150)
+MainFrame.ClipsDescendants = true
+
+-- Thuộc tính của TabFrame (khung chứa tab)
+TabFrame.Name = "TabFrame"
+TabFrame.Parent = MainFrame
+TabFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+TabFrame.Size = UDim2.new(1, 0, 0, 80) -- Tăng chiều cao khung tab để thêm tính năng
+
+-- Thuộc tính của AutoFarmTab
+AutoFarmTab.Name = "AutoFarmTab"
+AutoFarmTab.Parent = TabFrame
+AutoFarmTab.Text = "Auto Farm"
+AutoFarmTab.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoFarmTab.TextSize = 18
+AutoFarmTab.Size = UDim2.new(0.48, -5, 0.5, 0) -- Tab chiếm 48% chiều ngang
+AutoFarmTab.Position = UDim2.new(0, 5, 0, 0)
+AutoFarmTab.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+
+-- Thuộc tính của AutoBoneTab
+AutoBoneTab.Name = "AutoBoneTab"
+AutoBoneTab.Parent = TabFrame
+AutoBoneTab.Text = "Auto Bone"
+AutoBoneTab.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoBoneTab.TextSize = 18
+AutoBoneTab.Size = UDim2.new(0.48, -5, 0.5, 0)
+AutoBoneTab.Position = UDim2.new(0.52, 0, 0, 0)
+AutoBoneTab.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+
+-- Thuộc tính của AutoLevelButton
+AutoLevelButton.Name = "AutoLevelButton"
+AutoLevelButton.Parent = TabFrame
+AutoLevelButton.Text = "Auto Level: Tắt"
+AutoLevelButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoLevelButton.TextSize = 18 -- Chữ to hơn
+AutoLevelButton.Size = UDim2.new(0.96, 0, 0.4, 0) -- Chiếm 96% chiều ngang, đặt bên dưới hai tab
+AutoLevelButton.Position = UDim2.new(0.02, 0, 0.6, 0) -- Dưới 2 tab
+AutoLevelButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+
+-- Trạng thái và logic bật/tắt Auto Level
+local AutoLevelStatus = false
+AutoLevelButton.MouseButton1Click:Connect(function()
+    AutoLevelStatus = not AutoLevelStatus
+    if AutoLevelStatus then
+        AutoLevelButton.Text = "Auto Level: Bật"
+        AutoLevelButton.BackgroundColor3 = Color3.fromRGB(0, 150, 0) -- Màu xanh khi bật
+        print("Auto Level ON")
+        -- Thêm logic Auto Level ở đây
+    else
+        AutoLevelButton.Text = "Auto Level: Tắt"
+        AutoLevelButton.BackgroundColor3 = Color3.fromRGB(150, 0, 0) -- Màu đỏ khi tắt
+        print("Auto Level OFF")
+        -- Thêm logic tắt Auto Level ở đây
+    end
+end)
