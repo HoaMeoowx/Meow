@@ -1,0 +1,79 @@
+-- Tạo GUI
+local ScreenGui = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local TabFrame = Instance.new("Frame")
+local AutoFarmTab = Instance.new("TextButton")
+local AutoBoneTab = Instance.new("TextButton")
+local ContentFrame = Instance.new("Frame")
+
+-- Thuộc tính của ScreenGui
+ScreenGui.Name = "CustomGui"
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+-- Thuộc tính của MainFrame (khung chính)
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+MainFrame.Size = UDim2.new(0, 400, 0, 300)
+MainFrame.Position = UDim2.new(0.5, -200, 0.5, -150)
+MainFrame.ClipsDescendants = true
+
+-- Thuộc tính của TabFrame (khung chứa tab)
+TabFrame.Name = "TabFrame"
+TabFrame.Parent = MainFrame
+TabFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+TabFrame.Size = UDim2.new(1, 0, 0, 30)
+
+-- Thuộc tính của AutoFarmTab
+AutoFarmTab.Name = "AutoFarmTab"
+AutoFarmTab.Parent = TabFrame
+AutoFarmTab.Text = "Auto Farm"
+AutoFarmTab.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoFarmTab.Size = UDim2.new(0.5, -1, 1, 0)
+AutoFarmTab.Position = UDim2.new(0, 0, 0, 0)
+AutoFarmTab.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+
+-- Thuộc tính của AutoBoneTab
+AutoBoneTab.Name = "AutoBoneTab"
+AutoBoneTab.Parent = TabFrame
+AutoBoneTab.Text = "Auto Bone"
+AutoBoneTab.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoBoneTab.Size = UDim2.new(0.5, -1, 1, 0)
+AutoBoneTab.Position = UDim2.new(0.5, 1, 0, 0)
+AutoBoneTab.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+
+-- Thuộc tính của ContentFrame (khung chứa nội dung)
+ContentFrame.Name = "ContentFrame"
+ContentFrame.Parent = MainFrame
+ContentFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+ContentFrame.Size = UDim2.new(1, 0, 1, -30)
+ContentFrame.Position = UDim2.new(0, 0, 0, 30)
+
+-- Tạo nội dung cho AutoFarm
+local AutoFarmContent = Instance.new("TextLabel")
+AutoFarmContent.Parent = ContentFrame
+AutoFarmContent.Text = "Tính năng Auto Farm"
+AutoFarmContent.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoFarmContent.Size = UDim2.new(1, 0, 1, 0)
+AutoFarmContent.BackgroundTransparency = 1
+
+-- Tạo nội dung cho AutoBone
+local AutoBoneContent = Instance.new("TextLabel")
+AutoBoneContent.Parent = ContentFrame
+AutoBoneContent.Text = "Tính năng Auto Bone"
+AutoBoneContent.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoBoneContent.Size = UDim2.new(1, 0, 1, 0)
+AutoBoneContent.BackgroundTransparency = 1
+AutoBoneContent.Visible = false
+
+-- Xử lý sự kiện chuyển tab
+AutoFarmTab.MouseButton1Click:Connect(function()
+    AutoFarmContent.Visible = true
+    AutoBoneContent.Visible = false
+end)
+
+AutoBoneTab.MouseButton1Click:Connect(function()
+    AutoFarmContent.Visible = false
+    AutoBoneContent.Visible = true
+end)
